@@ -9,10 +9,8 @@ export type CardProps = {
 }
 
 export type CartProps = {
-    cart : {
-        products: ProductType[];
-        total: number;
-    },
+    cart : CartType,
+    setCart: React.Dispatch<React.SetStateAction<CartType>>;
     modalCart: boolean;
     setModalCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -25,6 +23,14 @@ export type ProductType = {
     picked: boolean;
     id: number;
     quantity: number;
+}
+
+export type ProductStateType = {
+    title: string;
+    price: number;
+    img: string;
+    picked: boolean;
+    id: number;
 }
 
 export type CartType = {

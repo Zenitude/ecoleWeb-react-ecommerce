@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import { HomeContainer, GlobalStyle } from "./Home.style";
 import { StyleSheetManager } from "styled-components";
 import Card from "../../components/Card/Card";
-import { ProductType } from "../../utils/types/types";
+import { ProductStateType } from "../../utils/types/types";
 import Cart from "../../components/Cart/Cart";
 import { Context } from "../../utils/context/context";
 
 export default function Home () {
-    const [ products, setProducts ] = useState<ProductType[]>([]);
+    const [ products, setProducts ] = useState<ProductStateType[]>([]);
     const [ modalCart, setModalCart ] = useState(false);
     const { cart, setCart } = useContext(Context)!;    
 
@@ -29,11 +29,11 @@ export default function Home () {
                 <div className="products">
                     {
                         products?.map((product, index) => (
-                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price_unit} img={product.img} picked={product.picked} cart={cart} setCart={setCart} />
+                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price} img={product.img} picked={product.picked} cart={cart} setCart={setCart} />
                         ))
                     }
                 </div>
-                <Cart cart={cart} modalCart={modalCart} setModalCart={setModalCart}/>
+                <Cart cart={cart} setCart={setCart} modalCart={modalCart} setModalCart={setModalCart}/>
 
             </HomeContainer>
         </StyleSheetManager>

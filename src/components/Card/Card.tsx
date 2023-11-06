@@ -13,10 +13,9 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
                 const previous = {...prev};
                 const filteredCart = previous.products.filter(item => item.id !== id);
                 previous.products = filteredCart;
-                previous.total = previous.products.reduce((acc, current) => acc + current.price_unit, 0);
+                previous.total = previous.products.reduce((acc, current) => acc + current.price_qty, 0);
                 return previous;
             });
-            console.log(cart);
         } else {
             const item = {
                 id: id,
@@ -31,10 +30,9 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
             setCart((prev) => {
                 const previous = {...prev};
                 previous.products.push(item);
-                previous.total = previous.products.reduce((acc, current) => acc + current.price_unit, 0);
+                previous.total = previous.products.reduce((acc, current) => acc + current.price_qty, 0);
                 return previous;
             });
-            console.log(cart);
         }
         setPickedItem(!pickedItem);
     }
@@ -44,7 +42,7 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
             <CardImage src={`/images/${img}.png`} alt={`Photographie du ${title}`}/>
             <CardDescription>
                 <CardTitle>{title}</CardTitle>
-                <CardPrice>{price}</CardPrice>
+                <CardPrice>{price}$</CardPrice>
             </CardDescription>
             <CardButton className={pickedItem ? "active" : "inactive"} onClick={() => updateCart(title, img, price)}>
                 {
