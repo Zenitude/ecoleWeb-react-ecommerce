@@ -29,11 +29,11 @@ export default function Home () {
                 <div className="products">
                     {
                         products?.map((product, index) => (
-                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price} img={product.img} picked={product.picked} cart={cart} setCart={setCart} />
+                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price} img={product.img} picked={product.picked} cart={cart} setCart={setCart} setProducts={setProducts} />
                         ))
                     }
                 </div>
-                <Cart cart={cart} setCart={setCart} modalCart={modalCart} setModalCart={setModalCart}/>
+                <Cart cart={cart} setCart={setCart} modalCart={modalCart} setModalCart={setModalCart} setProducts={setProducts}/>
 
             </HomeContainer>
         </StyleSheetManager>

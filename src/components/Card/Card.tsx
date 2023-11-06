@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { CardContainer, CardImage, CardDescription, CardTitle, CardPrice, CardButton } from "./Card.style"
 import { CardProps } from "../../utils/types/types";
 
-export default function Card({id, title, price, img, picked, cart, setCart}: CardProps) {
-    const [ pickedItem, setPickedItem ] = useState(picked);
+export default function Card({id, title, price, img, picked, cart, setCart, setProducts}: CardProps) {
     
-    const updateCart = (title: string, img: string, price: number) => {       
+    const updateCart = (title: string, img: string, price: number) => {    
         const exist = cart.products.filter(item => item.id === id);
         
         if(exist.length > 0) {
@@ -34,7 +32,14 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
                 return previous;
             });
         }
-        setPickedItem(!pickedItem);
+
+        setProducts((prev) => {
+            const previous = [...prev ];  
+            const item = previous[id-1];
+            item.picked = !picked;
+            previous[id-1] = item;
+            return previous;
+        })
     }
 
     return (
@@ -44,9 +49,9 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
                 <CardTitle>{title}</CardTitle>
                 <CardPrice>{price}$</CardPrice>
             </CardDescription>
-            <CardButton className={pickedItem ? "active" : "inactive"} onClick={() => updateCart(title, img, price)}>
+            <CardButton className={picked ? "active" : "inactive"} onClick={() => updateCart(title, img, price)}>
                 {
-                    pickedItem
+                    picked
                     ? ('Produit choisi ✔️')
                     : ('Ajouter au panier')
                 }
