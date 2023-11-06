@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+# [Ecole du Web](https://www.ecole-du-web.net/) - 10 React Projects - Scroll Infinite
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
