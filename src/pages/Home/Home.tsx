@@ -29,7 +29,7 @@ export default function Home () {
                 <div className="products">
                     {
                         products?.map((product, index) => (
-                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price} img={product.img} picked={product.picked} cart={cart} setCart={setCart} />
+                            <Card key={`${index}-${product.id}`} id={product.id} title={product.title} price={product.price_unit} img={product.img} picked={product.picked} cart={cart} setCart={setCart} />
                         ))
                     }
                 </div>

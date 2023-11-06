@@ -19,10 +19,12 @@ export type CartProps = {
 
 export type ProductType = {
     title: string;
-    price: number;
+    price_unit: number;
+    price_qty: number;
     img: string;
     picked: boolean;
     id: number;
+    quantity: number;
 }
 
 export type CartType = {

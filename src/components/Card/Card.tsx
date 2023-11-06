@@ -13,7 +13,7 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
                 const previous = {...prev};
                 const filteredCart = previous.products.filter(item => item.id !== id);
                 previous.products = filteredCart;
-                previous.total = previous.products.reduce((acc, current) => acc + current.price, 0);
+                previous.total = previous.products.reduce((acc, current) => acc + current.price_unit, 0);
                 return previous;
             });
             console.log(cart);
@@ -21,15 +21,17 @@ export default function Card({id, title, price, img, picked, cart, setCart}: Car
             const item = {
                 id: id,
                 title: title,
-                price: price,
+                price_unit: price,
+                price_qty: price * 1,
                 img: img,
-                picked: picked
+                picked: picked,
+                quantity: 1
             }
 
             setCart((prev) => {
                 const previous = {...prev};
                 previous.products.push(item);
-                previous.total = previous.products.reduce((acc, current) => acc + current.price, 0);
+                previous.total = previous.products.reduce((acc, current) => acc + current.price_unit, 0);
                 return previous;
             });
             console.log(cart);
