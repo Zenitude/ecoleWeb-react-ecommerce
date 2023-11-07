@@ -5,7 +5,7 @@ import { CartProps } from "../../utils/types/types";
 export default function Cart({cart, setCart, modalCart, setModalCart, setProducts}: CartProps) {
   const cartRef = useRef<HTMLDialogElement>(null);
 
-  const updateCart = (e: React.ChangeEvent<HTMLSelectElement>, indexItem:number) => {
+  const selectQty = (e: React.ChangeEvent<HTMLSelectElement>, indexItem:number) => {
     const element = e.currentTarget;
     const quantity = parseInt(element.value);
     
@@ -56,23 +56,25 @@ export default function Cart({cart, setCart, modalCart, setModalCart, setProduct
   return (
     <CartContainer ref={cartRef}>
       <CartButton className="closeCart" onClick={(e) => closeCart(e)}>X</CartButton>
-      {
-        cart.products.map((product, index) => (
-          <article key={`${index}-${product.id}`}>
-            <ImgProduct src={product.img} alt={`Photographie de ${product.title}`}/>
-            <NameProduct>{product.title}</NameProduct>
-            <SelectQuantity onChange={(e) => updateCart(e, index)}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </SelectQuantity>
-            <CartButton className={"removeProduct"} onClick={() => deleteItem(product.id)}>Supprimer du panier</CartButton>
-          </article>
-        ))
-      }
+        <div className="articles">
+          {
+            cart.products.map((product, index) => (
+              <article key={`${index}-${product.id}`}>
+                <ImgProduct src={`/images/${product.img}.png`} alt={`Photographie de ${product.title}`}/>
+                <NameProduct>{product.title}</NameProduct>
+                <SelectQuantity onChange={(e) => selectQty(e, index)}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </SelectQuantity>
+                <CartButton className={"removeProduct"} onClick={() => deleteItem(product.id)}>Supprimer du panier</CartButton>
+              </article>
+            ))
+          }
+        </div>
       <p>Your total : <TotalPrice>{cart.total}$</TotalPrice></p>
       <CartButton className={"proceedCheckout"}>Procéder au paiement</CartButton>
     </CartContainer>

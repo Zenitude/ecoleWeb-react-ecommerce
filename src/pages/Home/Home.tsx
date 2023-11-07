@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { HomeContainer, GlobalStyle } from "./Home.style";
+import { HomeContainer, GlobalStyle, OpenCart } from "./Home.style";
 import { StyleSheetManager } from "styled-components";
 import Card from "../../components/Card/Card";
 import { ProductStateType } from "../../utils/types/types";
@@ -24,7 +24,7 @@ export default function Home () {
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'theme'}>
             <GlobalStyle />
             <HomeContainer>
-                <button onClick={() => setModalCart(!modalCart)}>Cart</button>
+                <OpenCart onClick={() => setModalCart(!modalCart)}>View your cart : {cart.products.length}</OpenCart>
                 <h1>Here are our products</h1>
                 <div className="products">
                     {

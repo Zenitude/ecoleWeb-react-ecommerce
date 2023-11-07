@@ -11,7 +11,14 @@ export const GlobalStyle: any = createGlobalStyle`
 
     html, body, #root { 
         width: 100%;
-        height: 100%;
+        min-height: 100%;
+    }
+
+    @media (min-width: 1230px) {
+        html, body, #root {
+            height: 100%;
+            min-height: auto;
+        }
     }
 `;
 
@@ -23,24 +30,27 @@ export const HomeContainer = styled.main`
     justify-content: center;
     align-items: center;
     background-color: #333;
+    padding-inline: 10px;
     
     h1 {
         width: 100%;
         max-width: 1265px;
         min-width: 260px;
-        margin-inline: auto;
+        margin: 100px auto 20px;
         color: #fff;
         align-self: flex-start;
     }
 
-    div {
-        width: 100%;
+    .products {
+        width: fit-content;
         max-width: 1265px;
         min-width: 260px;
         background-color: #333;
         border-radius: 15px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        margin-inline: auto;
         gap: 15px;
 
         article {
@@ -95,4 +105,12 @@ export const HomeContainer = styled.main`
 
         
     }
+`;
+
+export const OpenCart = styled.button`
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
 `;
